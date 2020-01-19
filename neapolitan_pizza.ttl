@@ -1,0 +1,224 @@
+@prefix : <http://www.example.org/neapolitan_pizza#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix recipe: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#> .
+@base <http://www.example.org/neapolitan_pizza> .
+
+:neapolitan_pizza_dough a :Recipe ;
+    rdfs:label "neapolitan pizza dough" ;
+    :ingredient_list_item _:flour_for_dough ;
+    :ingredient_list_item _:yeast_for_dough ;
+    :ingredient_list_item _:salt_for_dough ;
+    :ingredient_list_item _:oil_for_dough ;
+    :ingredient_list_item _:water_for_dough ;
+    :ingredient_list_item _:cornmeal_for_dough ;
+    :step_list_item _:step_1 ;
+    :step_list_item _:step_2_1 ;
+    :step_list_item _:step_2_2 ;
+    :step_list_item _:step_2_3 ;
+    :step_list_item _:step_2_4 ;
+    :step_list_item _:step_2_5 ;
+    :step_list_item _:step_2_6 ;
+    :step_list_item _:step_3_1 ;
+    :step_list_item _:step_3_2 ;
+    :step_list_item _:step_4 ;
+    :step_list_item _:step_5 ;
+    :step_list_item _:step_6 ;
+    :step_list_item _:step_7 ;
+    :step_list_item _:step_8 ;
+    :step _:step_9 
+.
+
+#
+# Intermediate Products
+#
+
+_:six_pieces_of_dough rdfs:label "six pieces of dough" .
+_:piece_of_dough rdfs:label "a pieces of dough" .
+_:six_balls_of_dough rdfs:label "six balls of dough" .
+_:ball_of_dough rdfs:label "a ball of dough" .
+
+_:flour_for_dough a :Measurement ; 
+    :ingredient :flour ;
+    :amount 4.5 ;
+    :unit :Cup ;
+    :recipe :neapolitan_pizza_dough 
+.
+
+_:salt_for_dough a :Measurement ;
+    :ingredient :salt ;
+    :amount 1.75 ;
+    :unit :Teaspoon ;
+.
+
+_:yeast_for_dough a :Measurement ;
+    :ingredient :yeast ;
+    :amount 1 ;
+    :unit :Teaspoon 
+.
+
+_:water_for_dough a :Measurement ;
+    :ingredient :water ;
+    :amount 1.75 ;
+    :unit :Cup 
+.
+
+_:oil_for_dough a :Measurement ;
+    :ingredient :olive_oil ;
+    :amount 0.25 ;
+    :unit :Cup
+.
+
+_:cornmeal_for_dough a :Measurement ;
+    :ingredient :cornmeal ;
+    rdfs:comment "for dusting"
+.
+
+_:step_1 a :Step ;
+    :order 1 ;
+    rdfs:description "stir together the flour, salt, and instant yeast" ;
+    :operation :Stir ;
+    :ingredient _:flour_for_dough ;
+    :ingredient _:salt_for_dough ;
+    :ingredient _:yeast_for_dough ;
+    :ingredient _:water_for_dough ;
+    :product :dough ;
+    :equipment [
+        a :Bowl ; 
+        :size [ 
+            :amount 4 ;
+            :unit :Quart
+        ] 
+    ] ;
+    :equipment [
+        a :Spoon ; 
+        :size :Large ;
+        :material :Metal ;
+        :purpose :Mix ;
+    ] .
+
+_:step_2_1 a :Step ;
+    :order 2.1 ;
+    rdfs:description "Line sheet pan with parchment paper" ;
+    :operation :Line ;
+    :equipment [
+        a :ParchmentPaper 
+    ] ;
+    :equipment [
+        a :SheetPan 
+    ]
+.
+
+_:step_2_2 a :Step ;
+    :order 2.2 ;
+    rdfs:description "mist the parchment paper" ;
+    :operation :Mist ;
+    :ingredient _:oil_for_dough ;
+    :equipment [
+        a :ParchmentPaper 
+    ] ;
+    :equipment [
+        a :SheetPan 
+    ]
+.
+
+_:step_2_3 a :Step ;
+    :order 2.3 ;
+    rdfs:description "sprinkle flour on the counter and transfer the dough to the counter" ;
+    :operation :Sprinkle ;
+    :ingredient _:cornmeal_for_dough ;
+    :equipment [
+        a :SheetPan 
+    ]
+.
+
+
+_:step_2_4 a :Step ;
+    :order 2.4 ;
+    rdfs:description "cut the dough into six equal parts" ;
+    :operation :Cut ;
+    :product _:six_pieces_of_dough ;
+    :ingredient :dough ;
+    :equipment [
+        a :Scraper 
+    ]
+.
+
+_:step_2_5 a :Step ;
+    :order 2.5 ;
+    rdfs:description "round each piece into a ball" ;
+    :operation :Round ;
+    :ingredient _:six_pieces_of_dough ;
+    :product _:six_balls_of_dough ;
+    :equipment [
+        a :Hands
+    ]
+.
+
+_:step_2_6 a :Step ;
+    :order 2.6 ;
+    rdfs:description "transfer dough balls to sheet pan" ;
+    :operation :Move ;
+    :ingredient _:six_balls_of_dough ;
+    :equipment [
+        a :SheetPan
+    ]
+.
+
+_:step_3_1 a :Step ;
+    :order 3.1 ;
+    rdfs:description "put the pan into the refrigerator" ;
+    rdfs:comment "to rest the dough" ;
+    :operation :Move ;
+    :ingredient _:six_balls_of_dough ;
+    :equipment [
+        a :SheetPan
+    ] ;
+    :equipment [
+        a :Refrigerator
+    ]
+.
+
+_:step_3_2 a :Step ;
+    :order 3.2 ;
+    rdfs:description "rest the dough overnight" ;
+    :operation :Rest ;
+    :ingredient _:six_balls_of_dough ;
+    :equipment [
+        a :SheetPan
+    ] ;
+    :equipment [
+        a :Refrigerator
+    ]
+.
+
+_:step_4 a :Step ;
+    :order 4 ;
+    rdfs:description "remove the dough from the refrigerator" ;
+    rdfs:comment "two hours before making the pizza" .
+
+_:step_5 a :Step ;
+    :order 5 ;
+    rdfs:description "place a baking stone in the oven" ;
+    rdfs:comment "45 minutes before making the pizza" .
+
+_:step_6 a :Step ;
+    :order 6 ;
+    rdfs:description "toss the pizza dough" ;
+    rdfs:comment "one at a time" .
+
+_:step_7 a :Step ;
+    :order 7 ;
+    rdfs:description "top the pizza" ;
+    rdfs:comment "one at a time" .
+
+_:step_8 a :Step ;
+    :order 8 ;
+    rdfs:description "bake the pizza" ;
+    rdfs:comment "one at a time" .
+
+_:step_9 a :Step ;
+    :order 9 ;
+    rdfs:description "remove pizza from the oven" ;
+    rdfs:comment "let it cool before cutting" .

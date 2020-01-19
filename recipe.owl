@@ -1,0 +1,709 @@
+@prefix : <http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes> .
+
+<http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#equipment
+:equipment rdf:type owl:ObjectProperty ;
+           rdfs:range :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#ingredient
+:ingredient rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#ingredient_list_item
+:ingredient_list_item rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :ingredient ;
+                      rdfs:domain :Recipe ;
+                      rdfs:range :Measurement .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#measurement_ingredient
+:measurement_ingredient rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :ingredient ;
+                        rdfs:domain :Measurement .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#operation
+:operation rdf:type owl:ObjectProperty ;
+           rdfs:domain :Step ;
+           rdfs:range :Ingredient .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#product
+:product rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#recipe_product
+:recipe_product rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :product .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_equipment
+:step_equipment rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :equipment ;
+                rdfs:domain :Step .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_ingredient
+:step_ingredient rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :ingredient ;
+                 rdfs:domain :Step .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_product
+:step_product rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :product ;
+              rdfs:domain :Step ;
+              rdfs:range :Ingredient .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#unit
+:unit rdf:type owl:ObjectProperty ;
+      rdfs:domain :Measurement ;
+      rdfs:range :Unit .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#amount
+:amount rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#measurement_amount
+:measurement_amount rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :amount ;
+                    rdfs:domain :Measurement ;
+                    rdfs:range xsd:decimal ,
+                               xsd:double ,
+                               xsd:float ,
+                               xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#measurement_ingredient
+:measurement_ingredient rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#order
+:order rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_order
+:step_order rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :order ;
+            rdfs:domain :Step .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Annotated
+:Annotated rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Appearance
+:Appearance rdf:type owl:Class ;
+            rdfs:subClassOf :SensoryProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Appliance
+:Appliance rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Area
+:Area rdf:type owl:Class ;
+      rdfs:subClassOf :Spatial .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Bag
+:Bag rdf:type owl:Class ;
+     rdfs:subClassOf :Container ;
+     rdfs:label "bag"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Beef
+:Beef rdf:type owl:Class ;
+      rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#BodyParts
+:BodyParts rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Bowl
+:Bowl rdf:type owl:Class ;
+      rdfs:subClassOf :Container ;
+      rdfs:label "bowl"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Carbohydrates
+:Carbohydrates rdf:type owl:Class ;
+               rdfs:subClassOf :FoodGroup .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Ceramic
+:Ceramic rdf:type owl:Class ;
+         rdfs:subClassOf :Material ;
+         rdfs:label "ceramic"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Cleanup
+:Cleanup rdf:type owl:Class ;
+         rdfs:subClassOf :Stage .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Combine
+:Combine rdf:type owl:Class ;
+         rdfs:subClassOf :Operation ;
+         rdfs:label "combine"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Container
+:Container rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Conversion
+:Conversion rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Cuisine
+:Cuisine rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Cup
+:Cup rdf:type owl:Class ;
+     rdfs:subClassOf :Unit ;
+     rdfs:label "cup"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Cut
+:Cut rdf:type owl:Class ;
+     rdfs:subClassOf :Operation ;
+     rdfs:label "cut"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Dairy
+:Dairy rdf:type owl:Class ;
+       rdfs:subClassOf :FoodGroup .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Described
+:Described rdf:type owl:Class ;
+           rdfs:subClassOf :Annotated .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Dimension
+:Dimension rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Distance
+:Distance rdf:type owl:Class ;
+          rdfs:subClassOf :Spatial .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Eating
+:Eating rdf:type owl:Class ;
+        rdfs:subClassOf :Stage .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Feel
+:Feel rdf:type owl:Class ;
+      rdfs:subClassOf :SensoryProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Fish
+:Fish rdf:type owl:Class ;
+      rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Foil
+:Foil rdf:type owl:Class ;
+      rdfs:subClassOf :Sheet ;
+      rdfs:label "foil"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#FoodGroup
+:FoodGroup rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Fork
+:Fork rdf:type owl:Class ;
+      rdfs:subClassOf :Implement ;
+      rdfs:label "fork"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Freezer
+:Freezer rdf:type owl:Class ;
+         rdfs:subClassOf :Appliance ;
+         rdfs:label "freezer"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Fruit
+:Fruit rdf:type owl:Class ;
+       rdfs:subClassOf :FoodGroup .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Gallon
+:Gallon rdf:type owl:Class ;
+        rdfs:subClassOf :Unit ;
+        rdfs:label "gallon"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Hands
+:Hands rdf:type owl:Class ;
+       rdfs:subClassOf :BodyParts ;
+       rdfs:label "hands"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Heat
+:Heat rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:label "heat"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Herb
+:Herb rdf:type owl:Class ;
+      rdfs:subClassOf :Vegetable .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Implement
+:Implement rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Ingredient
+:Ingredient rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Knife
+:Knife rdf:type owl:Class ;
+       rdfs:subClassOf :Implement ;
+       rdfs:label "knife"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Labelled
+:Labelled rdf:type owl:Class ;
+          rdfs:subClassOf :Annotated .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Large
+:Large rdf:type owl:Class ;
+       rdfs:subClassOf :Size ;
+       rdfs:label "large"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Line
+:Line rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:comment "as in line baking pan with parchment paper"@en ;
+      rdfs:label "line"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Liquid
+:Liquid rdf:type owl:Class ;
+        rdfs:subClassOf :State .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Mass
+:Mass rdf:type owl:Class ;
+      rdfs:subClassOf :Dimension .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Material
+:Material rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Measurement
+:Measurement rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Meat
+:Meat rdf:type owl:Class ;
+      rdfs:subClassOf :FoodGroup .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Metal
+:Metal rdf:type owl:Class ;
+       rdfs:subClassOf :Material ;
+       rdfs:label "metal"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Mist
+:Mist rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:label "mist"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Mix
+:Mix rdf:type owl:Class ;
+     rdfs:subClassOf :Operation ;
+     rdfs:label "mix"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Move
+:Move rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:label "move"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Nutrient
+:Nutrient rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Operation
+:Operation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Oven
+:Oven rdf:type owl:Class ;
+      rdfs:subClassOf :Appliance ;
+      rdfs:label "oven"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Pan
+:Pan rdf:type owl:Class ;
+     rdfs:subClassOf :Container ;
+     rdfs:label "pan"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Paper
+:Paper rdf:type owl:Class ;
+       rdfs:subClassOf :Sheet .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Parchment
+:Parchment rdf:type owl:Class ;
+           rdfs:subClassOf :Material ;
+           rdfs:label "parchment"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#ParchmentPaper
+:ParchmentPaper rdf:type owl:Class ;
+                rdfs:subClassOf :Paper ;
+                rdfs:label "parchment paper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Pint
+:Pint rdf:type owl:Class ;
+      rdfs:subClassOf :Unit ;
+      rdfs:label "pint"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#PizzaStone
+:PizzaStone rdf:type owl:Class ;
+            rdfs:subClassOf :Container ;
+            rdfs:label "pizza stone"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Plastic
+:Plastic rdf:type owl:Class ;
+         rdfs:subClassOf :Material ;
+         rdfs:label "plastic"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#PlasticWrap
+:PlasticWrap rdf:type owl:Class ;
+             rdfs:subClassOf :Sheet ;
+             rdfs:label "wrap"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Pork
+:Pork rdf:type owl:Class ;
+      rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Poultry
+:Poultry rdf:type owl:Class ;
+         rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Preparation
+:Preparation rdf:type owl:Class ;
+             rdfs:subClassOf :Stage .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Quart
+:Quart rdf:type owl:Class ;
+       rdfs:subClassOf :Unit ;
+       rdfs:label "quart"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Recipe
+:Recipe rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Refrigerator
+:Refrigerator rdf:type owl:Class ;
+              rdfs:subClassOf :Appliance ;
+              rdfs:label "refrigerator"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Rest
+:Rest rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:label "rest"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#RootVegetable
+:RootVegetable rdf:type owl:Class ;
+               rdfs:subClassOf :Vegetable .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Round
+:Round rdf:type owl:Class ;
+       rdfs:subClassOf :Operation ;
+       rdfs:label "round"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Scent
+:Scent rdf:type owl:Class ;
+       rdfs:subClassOf :SensoryProperty .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Scraper
+:Scraper rdf:type owl:Class ;
+         rdfs:subClassOf :Implement ;
+         rdfs:label "scraper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#SensoryProperty
+:SensoryProperty rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Serving
+:Serving rdf:type owl:Class ;
+         rdfs:subClassOf :Stage .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Sheet
+:Sheet rdf:type owl:Class ;
+       rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#SheetPan
+:SheetPan rdf:type owl:Class ;
+          rdfs:subClassOf :Pan ;
+          rdfs:label "sheet pan"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Size
+:Size rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Small
+:Small rdf:type owl:Class ;
+       rdfs:subClassOf :Size ;
+       rdfs:label "small"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Solid
+:Solid rdf:type owl:Class ;
+       rdfs:subClassOf :State .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Spatial
+:Spatial rdf:type owl:Class ;
+         rdfs:subClassOf :Dimension .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Spatula
+:Spatula rdf:type owl:Class ;
+         rdfs:subClassOf :Implement ;
+         rdfs:label "spatula"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Spoon
+:Spoon rdf:type owl:Class ;
+       rdfs:subClassOf :Implement ;
+       rdfs:label "spoon"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Sprinkle
+:Sprinkle rdf:type owl:Class ;
+          rdfs:subClassOf :Operation ;
+          rdfs:label "sprinkle"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Stage
+:Stage rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#State
+:State rdf:type owl:Class ;
+       rdfs:subClassOf :Dimension .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Step
+:Step rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Sticky
+:Sticky rdf:type owl:Class ;
+        rdfs:subClassOf :Feel ;
+        rdfs:label "sticky"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Stir
+:Stir rdf:type owl:Class ;
+      rdfs:subClassOf :Operation ;
+      rdfs:label "stir"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#StoneFruit
+:StoneFruit rdf:type owl:Class ;
+            rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#StoveTop
+:StoveTop rdf:type owl:Class ;
+          rdfs:subClassOf :Appliance ;
+          rdfs:label "stove top"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#SubStep
+:SubStep rdf:type owl:Class ;
+         rdfs:subClassOf :Step .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Tablespoon
+:Tablespoon rdf:type owl:Class ;
+            rdfs:subClassOf :Unit ;
+            rdfs:label "tablespoon"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Tacky
+:Tacky rdf:type owl:Class ;
+       rdfs:subClassOf :Feel ;
+       rdfs:label "tacky"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Teaspoon
+:Teaspoon rdf:type owl:Class ;
+          rdfs:subClassOf :Unit ;
+          rdfs:label "teaspoon"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Time
+:Time rdf:type owl:Class ;
+      rdfs:subClassOf :Dimension .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Timer
+:Timer rdf:type owl:Class ;
+       rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Tool
+:Tool rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Unit
+:Unit rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Vegetable
+:Vegetable rdf:type owl:Class ;
+           rdfs:subClassOf :FoodGroup .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Volume
+:Volume rdf:type owl:Class ;
+        rdfs:subClassOf :Spatial .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Wax
+:Wax rdf:type owl:Class ;
+     rdfs:subClassOf :Material ;
+     rdfs:label "wax"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#WaxPaper
+:WaxPaper rdf:type owl:Class ;
+          rdfs:subClassOf :Paper ;
+          rdfs:label "wax paper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Wood
+:Wood rdf:type owl:Class ;
+      rdfs:subClassOf :Material ;
+      rdfs:label "wood"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#cornmeal
+:cornmeal rdf:type owl:NamedIndividual ;
+          rdfs:label "cornmeal"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#dough
+:dough rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       rdfs:label "dough"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#flour
+:flour rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       rdfs:label "flour"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#olive_oil
+:olive_oil rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           rdfs:label "olive oil"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#pepper
+:pepper rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        rdfs:label "pepper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#salt
+:salt rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      rdfs:label "salt"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#vegetable_oil
+:vegetable_oil rdf:type owl:NamedIndividual ,
+                        :Ingredient ;
+               rdfs:label "vegetable oil"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#water
+:water rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       rdfs:label "water"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#yeast
+:yeast rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       rdfs:label "yeast"@en .
+
+
+[ rdfs:label "cup"@en
+] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
