@@ -12,6 +12,18 @@
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#after
+:after rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :time_offset ;
+       rdfs:domain :Measurement .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#before
+:before rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :time_offset ;
+        rdfs:domain :Measurement .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#equipment
 :equipment rdf:type owl:ObjectProperty ;
            rdfs:range :Tool .
@@ -32,6 +44,11 @@
 :measurement_ingredient rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf :ingredient ;
                         rdfs:domain :Measurement .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#offset
+:offset rdf:type owl:ObjectProperty ;
+        rdfs:domain :Measurement .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#operation
@@ -66,6 +83,12 @@
               rdfs:subPropertyOf :product ;
               rdfs:domain :Step ;
               rdfs:range :Ingredient .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#time_offset
+:time_offset rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :offset ;
+             rdfs:range :Event .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#unit
@@ -183,6 +206,12 @@
 :Conversion rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Counter
+:Counter rdf:type owl:Class ;
+         rdfs:subClassOf :WorkSurface ;
+         rdfs:label "counter"@en .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Cuisine
 :Cuisine rdf:type owl:Class .
 
@@ -221,6 +250,10 @@
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Eating
 :Eating rdf:type owl:Class ;
         rdfs:subClassOf :Stage .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Event
+:Event rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Feel
@@ -283,6 +316,12 @@
       rdfs:subClassOf :Vegetable .
 
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Hour
+:Hour rdf:type owl:Class ;
+      rdfs:subClassOf :Unit ;
+      rdfs:label "hour"@en .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Implement
 :Implement rdf:type owl:Class ;
            rdfs:subClassOf :Tool .
@@ -343,6 +382,12 @@
 :Metal rdf:type owl:Class ;
        rdfs:subClassOf :Material ;
        rdfs:label "metal"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Minute
+:Minute rdf:type owl:Class ;
+        rdfs:subClassOf :Unit ;
+        rdfs:label "minute"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Mist
@@ -483,6 +528,12 @@
          rdfs:label "scraper"@en .
 
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Second
+:Second rdf:type owl:Class ;
+        rdfs:subClassOf :Unit ;
+        rdfs:label "second"@en .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#SensoryProperty
 :SensoryProperty rdf:type owl:Class .
 
@@ -551,7 +602,8 @@
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Step
-:Step rdf:type owl:Class .
+:Step rdf:type owl:Class ;
+      rdfs:subClassOf :Event .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Sticky
@@ -644,6 +696,11 @@
 :Wood rdf:type owl:Class ;
       rdfs:subClassOf :Material ;
       rdfs:label "wood"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#WorkSurface
+:WorkSurface rdf:type owl:Class ;
+             rdfs:subClassOf :Tool .
 
 
 #################################################################
