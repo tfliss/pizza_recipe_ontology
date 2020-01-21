@@ -28,6 +28,7 @@
 # Intermediate Products
 #
 
+_:mixed_dough rdfs:label "mixed dough" .
 _:six_pieces_of_dough rdfs:label "six pieces of dough" .
 _:piece_of_dough rdfs:label "a pieces of dough" .
 _:six_balls_of_dough rdfs:label "six balls of dough" .
@@ -111,9 +112,7 @@ _:step_2_1 a :SubStep ;
     :equipment [
         a :ParchmentPaper 
     ] ;
-    :equipment [
-        a :SheetPan 
-    ]
+    :equipment _:sheet_pan
 .
 
 _:step_2_2 a :SubStep ;
@@ -124,27 +123,30 @@ _:step_2_2 a :SubStep ;
     :equipment [
         a :ParchmentPaper 
     ] ;
-    :equipment [
-        a :SheetPan 
-    ]
+    :equipment _:sheet_pan
 .
 
 _:counter a :Counter .
+_:oven a :Oven .
+_:refrigerator a :Refrigerator .
+_:sheet_pan a :SheetPan .
+_:pizza_stone a :PizzaStone .
+_:pizza_peel a :PizzaPeel .
 
 _:step_2_3 a :SubStep ;
     :order 3 ;
     rdfs:label "sprinkle flour on the counter and transfer the dough to the counter" ;
     :operation :Sprinkle ;
     :ingredient _:cornmeal_for_dough ;
-    :equipment _:Counter
+    :equipment _:counter
 .
 
 _:step_2_4 a :SubStep ;
     :order 4 ;
     rdfs:label "transfer the dough to the counter" ;
     :operation :Move ;
-    :ingredient _:dough ;
-    :equipment  _:Counter
+    :ingredient _:mixed_dough ;
+    :onto  _:counter
 .
 
 _:step_2_5 a :SubStep ;
@@ -174,9 +176,7 @@ _:step_2_7 a :SubStep ;
     rdfs:label "transfer dough balls to sheet pan" ;
     :operation :Move ;
     :ingredient _:six_balls_of_dough ;
-    :equipment [
-        a :SheetPan
-    ]
+    :equipment _:sheet_pan
 .
 
 _:step_3 a :Step;
@@ -191,12 +191,8 @@ _:step_3_1 a :SubStep ;
     rdfs:comment "to rest the dough" ;
     :operation :Move ;
     :ingredient _:six_balls_of_dough ;
-    :equipment [
-        a :SheetPan
-    ] ;
-    :equipment [
-        a :Refrigerator
-    ]
+    :equipment _:sheet_pan ;
+    :into _:refrigerator
 .
 
 _:step_3_2 a :SubStep ;
@@ -204,12 +200,8 @@ _:step_3_2 a :SubStep ;
     rdfs:label "rest the dough overnight" ;
     :operation :Rest ;
     :ingredient _:six_balls_of_dough ;
-    :equipment [
-        a :SheetPan
-    ] ;
-    :equipment [
-        a :Refrigerator
-    ]
+    :equipment _:sheet_pan ;
+    :in _:refrigerator
 .
 
 _:step_4 a :Step;
@@ -218,17 +210,13 @@ _:step_4 a :Step;
     :sub_step _:step_4_2
 .
 
-_:step_4_1 a :Step ;
+_:step_4_1 a :SubStep ;
     :order 1 ;
     rdfs:label "remove the dough from the refrigerator" ;
     :operation :remove ;
     :ingredient _:six_balls_of_dough ;
-    :equipment [
-        a :SheetPan
-    ] ;
-    :equipment [
-        a :Refrigerator
-    ];
+    :equipment _:sheet_pan ;
+    :from _:refrigerator ;
     :at [ 
         :amount 2 ;
         :unit :Hour ;
@@ -236,9 +224,26 @@ _:step_4_1 a :Step ;
     ] 
 .
 
-_:step_5 a :Step ;
+_:step_5 a :Step;
     :order 5 ;
+    :sub_step _:step_5_1 ;
+    :sub_step _:step_5_2
+.
+
+_:step_5_1 a :SubStep ;
+    :order 1 ;
     rdfs:label "place a baking stone in the oven" ;
+    :operation :Move ;
+    :equipment _:pizza_stone ;
+    :in _:oven 
+.
+
+_:step_5_2 a :SubStep ;
+    :order 2 ;
+    rdfs:label "preheat the oven" ;
+    rdfs:comment "as hot as possible" ;
+    :operation :Preheat ;
+    :equipment _:oven ;
     :at [ 
         :amount 45 ;
         :unit :Minute ;

@@ -28,7 +28,20 @@
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#equipment
 :equipment rdf:type owl:ObjectProperty ;
-           rdfs:range :Tool .
+           rdfs:range :Tool ;
+           rdfs:comment "equipment"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#from
+:from rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :step_equipment ;
+      rdfs:label "from"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#in
+:in rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :step_equipment ;
+    rdfs:label "in"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#ingredient
@@ -42,6 +55,12 @@
                       rdfs:range :Measurement .
 
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#into
+:into rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :to ;
+      rdfs:label "into"@en .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#measurement_ingredient
 :measurement_ingredient rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf :ingredient ;
@@ -51,6 +70,12 @@
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#offset
 :offset rdf:type owl:ObjectProperty ;
         rdfs:domain :Measurement .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#onto
+:onto rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :to ;
+      rdfs:label "onto"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#operation
@@ -71,7 +96,8 @@
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_equipment
 :step_equipment rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :equipment ;
-                rdfs:domain :Step .
+                rdfs:domain :Step ;
+                rdfs:comment "equipment"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#step_ingredient
@@ -91,6 +117,12 @@
 :time_offset rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :offset ;
              rdfs:range :Event .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#to
+:to rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :step_equipment ;
+    rdfs:label "to"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#unit
@@ -453,6 +485,12 @@
       rdfs:label "pint"@en .
 
 
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#PizzaPeel
+:PizzaPeel rdf:type owl:Class ;
+           rdfs:subClassOf :Implement ;
+           rdfs:label "pizza peel"@en .
+
+
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#PizzaStone
 :PizzaStone rdf:type owl:Class ;
             rdfs:subClassOf :Container ;
@@ -479,6 +517,12 @@
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Poultry
 :Poultry rdf:type owl:Class ;
          rdfs:subClassOf :Meat .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Preheat
+:Preheat rdf:type owl:Class ;
+         rdfs:subClassOf :Operation ;
+         rdfs:label "preheat"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#Preparation
