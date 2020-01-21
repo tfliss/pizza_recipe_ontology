@@ -15,13 +15,15 @@
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#after
 :after rdf:type owl:ObjectProperty ;
        rdfs:subPropertyOf :time_offset ;
-       rdfs:domain :Measurement .
+       rdfs:domain :Measurement ;
+       rdfs:label "after"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#before
 :before rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf :time_offset ;
-        rdfs:domain :Measurement .
+        rdfs:domain :Measurement ;
+        rdfs:label "before"@en .
 
 
 ###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#equipment
