@@ -14,14 +14,8 @@
     :ingredient_list_item _:water_for_dough ;
     :ingredient_list_item _:cornmeal_for_dough ;
     :step_list_item _:step_1 ;
-    :step_list_item _:step_2_1 ;
-    :step_list_item _:step_2_2 ;
-    :step_list_item _:step_2_3 ;
-    :step_list_item _:step_2_4 ;
-    :step_list_item _:step_2_5 ;
-    :step_list_item _:step_2_6 ;
-    :step_list_item _:step_3_1 ;
-    :step_list_item _:step_3_2 ;
+    :step_list_item _:step_2 ;
+    :step_list_item _:step_3 ;
     :step_list_item _:step_4 ;
     :step_list_item _:step_5 ;
     :step_list_item _:step_6 ;
@@ -77,7 +71,7 @@ _:cornmeal_for_dough a :Measurement ;
 
 _:step_1 a :Step ;
     :order 1 ;
-    rdfs:description "stir together the flour, salt, and instant yeast" ;
+    rdfs:label "stir together the flour, salt, and instant yeast" ;
     :operation :Stir ;
     :ingredient _:flour_for_dough ;
     :ingredient _:salt_for_dough ;
@@ -98,9 +92,21 @@ _:step_1 a :Step ;
         :purpose :Mix ;
     ] .
 
-_:step_2_1 a :Step ;
-    :order 2.1 ;
-    rdfs:description "Line sheet pan with parchment paper" ;
+
+_:step_2 a :Step;
+    :order 2 ;
+    :sub_step _:step_2_1 ;
+    :sub_step _:step_2_2 ;
+    :sub_step _:step_2_3 ;
+    :sub_step _:step_2_4 ;
+    :sub_step _:step_2_5 ;
+    :sub_step _:step_2_6 ;
+    :sub_step _:step_2_7 
+.
+
+_:step_2_1 a :SubStep ;
+    :order 1 ;
+    rdfs:label "Line sheet pan with parchment paper" ;
     :operation :Line ;
     :equipment [
         a :ParchmentPaper 
@@ -110,9 +116,9 @@ _:step_2_1 a :Step ;
     ]
 .
 
-_:step_2_2 a :Step ;
-    :order 2.2 ;
-    rdfs:description "mist the parchment paper" ;
+_:step_2_2 a :SubStep ;
+    :order 2 ;
+    rdfs:label "mist the parchment paper" ;
     :operation :Mist ;
     :ingredient _:oil_for_dough ;
     :equipment [
@@ -123,20 +129,27 @@ _:step_2_2 a :Step ;
     ]
 .
 
-_:step_2_3 a :Step ;
-    :order 2.3 ;
-    rdfs:description "sprinkle flour on the counter and transfer the dough to the counter" ;
+_:counter a :Counter .
+
+_:step_2_3 a :SubStep ;
+    :order 3 ;
+    rdfs:label "sprinkle flour on the counter and transfer the dough to the counter" ;
     :operation :Sprinkle ;
     :ingredient _:cornmeal_for_dough ;
-    :equipment [
-        a :SheetPan 
-    ]
+    :equipment _:Counter
 .
 
+_:step_2_4 a :SubStep ;
+    :order 4 ;
+    rdfs:label "transfer the dough to the counter" ;
+    :operation :Move ;
+    :ingredient _:dough ;
+    :equipment  _:Counter
+.
 
-_:step_2_4 a :Step ;
-    :order 2.4 ;
-    rdfs:description "cut the dough into six equal parts" ;
+_:step_2_5 a :SubStep ;
+    :order 5 ;
+    rdfs:label "cut the dough into six equal parts" ;
     :operation :Cut ;
     :product _:six_pieces_of_dough ;
     :ingredient :dough ;
@@ -145,9 +158,9 @@ _:step_2_4 a :Step ;
     ]
 .
 
-_:step_2_5 a :Step ;
-    :order 2.5 ;
-    rdfs:description "round each piece into a ball" ;
+_:step_2_6 a :SubStep ;
+    :order 6 ;
+    rdfs:comment "round each piece into a ball" ;
     :operation :Round ;
     :ingredient _:six_pieces_of_dough ;
     :product _:six_balls_of_dough ;
@@ -156,9 +169,9 @@ _:step_2_5 a :Step ;
     ]
 .
 
-_:step_2_6 a :Step ;
-    :order 2.6 ;
-    rdfs:description "transfer dough balls to sheet pan" ;
+_:step_2_7 a :SubStep ;
+    :order 7 ;
+    rdfs:label "transfer dough balls to sheet pan" ;
     :operation :Move ;
     :ingredient _:six_balls_of_dough ;
     :equipment [
@@ -166,9 +179,15 @@ _:step_2_6 a :Step ;
     ]
 .
 
-_:step_3_1 a :Step ;
-    :order 3.1 ;
-    rdfs:description "put the pan into the refrigerator" ;
+_:step_3 a :Step;
+    :order 3 ;
+    :sub_step _:step_3_1 ;
+    :sub_step _:step_3_2
+.
+
+_:step_3_1 a :SubStep ;
+    :order 1 ;
+    rdfs:label "put the pan into the refrigerator" ;
     rdfs:comment "to rest the dough" ;
     :operation :Move ;
     :ingredient _:six_balls_of_dough ;
@@ -180,9 +199,9 @@ _:step_3_1 a :Step ;
     ]
 .
 
-_:step_3_2 a :Step ;
-    :order 3.2 ;
-    rdfs:description "rest the dough overnight" ;
+_:step_3_2 a :SubStep ;
+    :order 2 ;
+    rdfs:label "rest the dough overnight" ;
     :operation :Rest ;
     :ingredient _:six_balls_of_dough ;
     :equipment [
@@ -193,32 +212,56 @@ _:step_3_2 a :Step ;
     ]
 .
 
-_:step_4 a :Step ;
+_:step_4 a :Step;
     :order 4 ;
-    rdfs:description "remove the dough from the refrigerator" ;
-    rdfs:comment "two hours before making the pizza" .
+    :sub_step _:step_4_1 ;
+    :sub_step _:step_4_2
+.
+
+_:step_4_1 a :Step ;
+    :order 1 ;
+    rdfs:label "remove the dough from the refrigerator" ;
+    :operation :remove ;
+    :ingredient _:six_balls_of_dough ;
+    :equipment [
+        a :SheetPan
+    ] ;
+    :equipment [
+        a :Refrigerator
+    ];
+    :at [ 
+        :amount 2 ;
+        :unit :Hour ;
+        :before _:step_7 
+    ] 
+.
 
 _:step_5 a :Step ;
     :order 5 ;
-    rdfs:description "place a baking stone in the oven" ;
-    rdfs:comment "45 minutes before making the pizza" .
+    rdfs:label "place a baking stone in the oven" ;
+    :at [ 
+        :amount 45 ;
+        :unit :Minute ;
+        :before _:step_7 
+    ] 
+.
 
 _:step_6 a :Step ;
     :order 6 ;
-    rdfs:description "toss the pizza dough" ;
+    rdfs:label "toss the dough" ;
     rdfs:comment "one at a time" .
 
 _:step_7 a :Step ;
     :order 7 ;
-    rdfs:description "top the pizza" ;
+    rdfs:label "top the pizza" ;
     rdfs:comment "one at a time" .
 
 _:step_8 a :Step ;
     :order 8 ;
-    rdfs:description "bake the pizza" ;
+    rdfs:label "bake the pizza" ;
     rdfs:comment "one at a time" .
 
 _:step_9 a :Step ;
     :order 9 ;
-    rdfs:description "remove pizza from the oven" ;
+    rdfs:label "remove pizza from the oven" ;
     rdfs:comment "let it cool before cutting" .
