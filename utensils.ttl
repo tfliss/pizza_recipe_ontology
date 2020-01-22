@@ -1,0 +1,233 @@
+@prefix : <http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils> .
+
+<http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#equipment
+:equipment rdf:type owl:ObjectProperty ;
+           rdfs:range :Tool .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Appliance
+:Appliance rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Bag
+:Bag rdf:type owl:Class ;
+     rdfs:subClassOf :Container ;
+     rdfs:label "bag"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#BodyParts
+:BodyParts rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Bowl
+:Bowl rdf:type owl:Class ;
+      rdfs:subClassOf :Container ;
+      rdfs:label "bowl"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Ceramic
+:Ceramic rdf:type owl:Class ;
+         rdfs:subClassOf :Material ;
+         rdfs:label "ceramic"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Container
+:Container rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Counter
+:Counter rdf:type owl:Class ;
+         rdfs:subClassOf :WorkSurface ;
+         rdfs:label "counter"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Foil
+:Foil rdf:type owl:Class ;
+      rdfs:subClassOf :Sheet ;
+      rdfs:label "foil"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Fork
+:Fork rdf:type owl:Class ;
+      rdfs:subClassOf :Implement ;
+      rdfs:label "fork"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Freezer
+:Freezer rdf:type owl:Class ;
+         rdfs:subClassOf :Appliance ;
+         rdfs:label "freezer"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Hands
+:Hands rdf:type owl:Class ;
+       rdfs:subClassOf :BodyParts ;
+       rdfs:label "hands"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Implement
+:Implement rdf:type owl:Class ;
+           rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Knife
+:Knife rdf:type owl:Class ;
+       rdfs:subClassOf :Implement ;
+       rdfs:label "knife"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Material
+:Material rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Metal
+:Metal rdf:type owl:Class ;
+       rdfs:subClassOf :Material ;
+       rdfs:label "metal"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Oven
+:Oven rdf:type owl:Class ;
+      rdfs:subClassOf :Appliance ;
+      rdfs:label "oven"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Pan
+:Pan rdf:type owl:Class ;
+     rdfs:subClassOf :Container ;
+     rdfs:label "pan"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Paper
+:Paper rdf:type owl:Class ;
+       rdfs:subClassOf :Sheet .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Parchment
+:Parchment rdf:type owl:Class ;
+           rdfs:subClassOf :Material ;
+           rdfs:label "parchment"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#ParchmentPaper
+:ParchmentPaper rdf:type owl:Class ;
+                rdfs:subClassOf :Paper ;
+                rdfs:label "parchment paper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#PizzaPeel
+:PizzaPeel rdf:type owl:Class ;
+           rdfs:subClassOf :Implement ;
+           rdfs:label "pizza peel"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#PizzaStone
+:PizzaStone rdf:type owl:Class ;
+            rdfs:subClassOf :Container ;
+            rdfs:label "pizza stone"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Plastic
+:Plastic rdf:type owl:Class ;
+         rdfs:subClassOf :Material ;
+         rdfs:label "plastic"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#PlasticWrap
+:PlasticWrap rdf:type owl:Class ;
+             rdfs:subClassOf :Sheet ;
+             rdfs:label "wrap"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Refrigerator
+:Refrigerator rdf:type owl:Class ;
+              rdfs:subClassOf :Appliance ;
+              rdfs:label "refrigerator"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Scraper
+:Scraper rdf:type owl:Class ;
+         rdfs:subClassOf :Implement ;
+         rdfs:label "scraper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Sheet
+:Sheet rdf:type owl:Class ;
+       rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#SheetPan
+:SheetPan rdf:type owl:Class ;
+          rdfs:subClassOf :Pan .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Spatula
+:Spatula rdf:type owl:Class ;
+         rdfs:subClassOf :Implement ;
+         rdfs:label "spatula"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Spoon
+:Spoon rdf:type owl:Class ;
+       rdfs:subClassOf :Implement ;
+       rdfs:label "spoon"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#StoveTop
+:StoveTop rdf:type owl:Class ;
+          rdfs:subClassOf :Appliance ;
+          rdfs:label "stove top"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Timer
+:Timer rdf:type owl:Class ;
+       rdfs:subClassOf :Tool .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Tool
+:Tool rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Wax
+:Wax rdf:type owl:Class ;
+     rdfs:subClassOf :Material ;
+     rdfs:label "wax"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#WaxPaper
+:WaxPaper rdf:type owl:Class ;
+          rdfs:subClassOf :Paper ;
+          rdfs:label "wax paper"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#Wood
+:Wood rdf:type owl:Class ;
+      rdfs:subClassOf :Material ;
+      rdfs:label "wood"@en .
+
+
+###  http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#WorkSurface
+:WorkSurface rdf:type owl:Class ;
+             rdfs:subClassOf :Tool .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

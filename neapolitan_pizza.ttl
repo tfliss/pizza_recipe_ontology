@@ -1,7 +1,9 @@
 @prefix : <http://www.example.org/neapolitan_pizza#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix recipe: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ing: <http://www.semanticweb.org/tpfliss/ontologies/2020/0/ingredients#> .
+@prefix utensil: <http://www.semanticweb.org/tpfliss/ontologies/2020/0/utensils#> .
+@prefix measure: <http://www.semanticweb.org/tpfliss/ontologies/2020/0/measurement#> .
 @prefix : <http://www.semanticweb.org/tpfliss/ontologies/2020/0/recipes#> .
 @base <http://www.example.org/neapolitan_pizza> .
 
@@ -35,38 +37,38 @@ _:six_balls_of_dough rdfs:label "six balls of dough" .
 _:ball_of_dough rdfs:label "a ball of dough" .
 
 _:flour_for_dough a :Measurement ; 
-    :ingredient :flour ;
+    :ingredient ing:Flour ;
     :amount 4.5 ;
-    :unit :Cup ;
+    measure:unit measure:Cup ;
     :recipe :neapolitan_pizza_dough 
 .
 
 _:salt_for_dough a :Measurement ;
-    :ingredient :salt ;
+    :ingredient ing:Salt ;
     :amount 1.75 ;
-    :unit :Teaspoon ;
+    measure:unit measure:Teaspoon ;
 .
 
 _:yeast_for_dough a :Measurement ;
-    :ingredient :yeast ;
+    :ingredient ing:Yeast ;
     :amount 1 ;
-    :unit :Teaspoon 
+    measure:unit measure:Teaspoon 
 .
 
 _:water_for_dough a :Measurement ;
-    :ingredient :water ;
+    :ingredient ing:Water ;
     :amount 1.75 ;
-    :unit :Cup 
+    measure:unit measure:Cup 
 .
 
 _:oil_for_dough a :Measurement ;
-    :ingredient :olive_oil ;
+    :ingredient ing:OliveOil ;
     :amount 0.25 ;
-    :unit :Cup
+    measure:unit measure:Cup
 .
 
 _:cornmeal_for_dough a :Measurement ;
-    :ingredient :cornmeal ;
+    :ingredient ing:Cornmeal ;
     rdfs:comment "for dusting"
 .
 
@@ -80,16 +82,16 @@ _:step_1 a :Step ;
     :ingredient _:water_for_dough ;
     :product :dough ;
     :equipment [
-        a :Bowl ; 
+        a utensil:Bowl ; 
         :size [ 
             :amount 4 ;
-            :unit :Quart
+            measure:unit measure:Quart
         ] 
     ] ;
     :equipment [
-        a :Spoon ; 
+        a utensil:Spoon ; 
         :size :Large ;
-        :material :Metal ;
+        :material utensil:Metal ;
         :purpose :Mix ;
     ] .
 
@@ -110,7 +112,7 @@ _:step_2_1 a :SubStep ;
     rdfs:label "Line sheet pan with parchment paper" ;
     :operation :Line ;
     :equipment [
-        a :ParchmentPaper 
+        a utensil:ParchmentPaper 
     ] ;
     :equipment _:sheet_pan
 .
@@ -121,17 +123,17 @@ _:step_2_2 a :SubStep ;
     :operation :Mist ;
     :ingredient _:oil_for_dough ;
     :equipment [
-        a :ParchmentPaper 
+        a utensil:ParchmentPaper 
     ] ;
     :equipment _:sheet_pan
 .
 
-_:counter a :Counter .
-_:oven a :Oven .
-_:refrigerator a :Refrigerator .
-_:sheet_pan a :SheetPan .
-_:pizza_stone a :PizzaStone .
-_:pizza_peel a :PizzaPeel .
+_:counter a utensil:Counter .
+_:oven a utensil:Oven .
+_:refrigerator a utensil:Refrigerator .
+_:sheet_pan a utensil:SheetPan .
+_:pizza_stone a utensil:PizzaStone .
+_:pizza_peel a utensil:PizzaPeel .
 
 _:step_2_3 a :SubStep ;
     :order 3 ;
@@ -154,9 +156,9 @@ _:step_2_5 a :SubStep ;
     rdfs:label "cut the dough into six equal parts" ;
     :operation :Cut ;
     :product _:six_pieces_of_dough ;
-    :ingredient :dough ;
+    :ingredient ing:Dough ;
     :equipment [
-        a :Scraper 
+        a utensil:Scraper 
     ]
 .
 
@@ -167,7 +169,7 @@ _:step_2_6 a :SubStep ;
     :ingredient _:six_pieces_of_dough ;
     :product _:six_balls_of_dough ;
     :equipment [
-        a :Hands
+        a utensil:Hands
     ]
 .
 
@@ -219,7 +221,7 @@ _:step_4_1 a :SubStep ;
     :from _:refrigerator ;
     :at [ 
         :amount 2 ;
-        :unit :Hour ;
+        measure:unit measure:Hour ;
         :before _:step_7 
     ] 
 .
@@ -246,7 +248,7 @@ _:step_5_2 a :SubStep ;
     :equipment _:oven ;
     :at [ 
         :amount 45 ;
-        :unit :Minute ;
+        measure:unit measure:Minute ;
         :before _:step_7 
     ] 
 .
