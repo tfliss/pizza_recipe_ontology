@@ -1,0 +1,98 @@
+Classes:
+  - Annotated:
+    - Described
+    - Labelled
+  - Cuisine
+  - Event:
+    - Step:
+      - SubStep
+  - FoodGroup:
+    - Carbohydrates
+    - Dairy
+    - Fruit:
+      - StoneFruit
+    - Meat:
+      - Beef
+      - Fish
+      - Pork
+      - Poultry
+    - Vegetable:
+      - Herb
+      - RootVegetable
+  - Ingredient
+  - Measurement
+  - Nutrient
+  - Operation
+  - Recipe
+  - SensoryProperty:
+    - Appearance
+    - Feel:
+      - Sticky
+      - Tacky
+    - Scent
+  - Stage:
+    - Cleanup
+    - Eating
+    - Preparation
+    - Serving
+Individuals:
+  Operation:
+    - Cut
+    - Combine
+    - Heat
+    - Line
+    - Mist
+    - Mix
+    - Move
+    - Preheat
+    - Rest
+    - Round
+    - Sprinkle
+    - Stir
+ObjectProperties:
+  - equipment:
+    - step_equipment:
+      - from
+      - in
+      - to:
+        - into
+        - onto
+  - ingredient:
+    - ingredient_list_item
+    - measurement_ingredient
+    - step_ingredient
+  - offset:
+    - time_offset:
+      - after
+      - before
+  - operation
+  - product:
+    - recipe_product
+    - step_product
+  - unit
+Associations:
+  step_equipment:
+    domain: Step
+  ingredient_list_item:
+    domain: Recipe
+    range: Measurement
+  measurement_ingredient:
+    domain: Measurement
+  step_ingredient:
+    domain: Step
+  offset:
+    domain: Measurement
+  time_offset:
+    range: Event
+  after:
+    domain: Measurement
+  before:
+    domain: Measurement
+  operation:
+    domain: Step
+    range: Ingredient
+  step_product:
+    domain: Step
+    range: Ingredient
+  unit:
+    domain: Measurement
