@@ -14,14 +14,20 @@ def ontology_from_yaml(yml, uri):
     with open(yml) as f:
         yaml_ontology = yaml.safe_load(f)
 
-    create_classes(ont, yaml_ontology['Classes'])
-    create_individuals(ont, yaml_ontology['Individuals'])
-    create_properties(ont, yaml_ontology['ObjectProperties'])
-    associations(ont, yaml_ontology['Associations'])
+    if 'Classes' in yaml_ontology.keys():
+        create_classes(ont, yaml_ontology['Classes'])
+
+    if 'Individuals' in yaml_ontology.keys():
+        create_individuals(ont, yaml_ontology['Individuals'])
+
+    if 'ObjectProperties' in yaml_ontology.keys():
+        create_properties(ont, yaml_ontology['ObjectProperties'])
+
+    if 'Associations' in yaml_ontology.keys():
+        associations(ont, yaml_ontology['Associations'])
     
     return ont
 
-# TODO: Need to write something similar to below for properties
 def create_classes(ont, class_list, super_class=None):
     # Create some subclasses as a tree
     if super_class is None:
@@ -61,7 +67,6 @@ def create_properties(ont, prop_list, super_prop=None):
 def associations(ont, dr_list):
     with ont:
         for prop,values in dr_list.items():
-            print(prop)
             if 'domain' in values:
                 ont[prop].domain.append(ont[values['domain']])
             if 'range' in values:
@@ -106,3 +111,31 @@ def class_tree_df():
     subclass_df['weight'] = 1
 
     return subclass_df
+
+
+def association_df(graph):
+    df = pd.DataFrame(
+        graph.query('''
+    SELECT DISTINCT ?s ?p ?o ?sl ?pl ?ol WHERE {
+        ?p rdfs:domain ?stemp ;
+           rdfs:range ?otemp .
+        ?stemp rdfs:subClassOf* ?s .
+        ?otemp rdfs:subClassOf* ?o .
+        OPTIONAL {
+            ?s rdfs:label ?sl .
+        } OPTIONAL {
+            ?p rdfs:label ?pl .
+        } OPTIONAL {
+            ?o rdfs:label ?ol .
+        }
+    }
+    ''',
+            initNs={ 
+                'rdfs': RDFS,
+                'owl': OWL
+            }
+        ),
+        columns=['source', 'property', 'target', 'source_label', 'property_label', 'target_label']
+    )
+
+    return df
